@@ -4,7 +4,7 @@ public class SolicitudPrestamo {
     private final java.util.Date fechaDevolucion;
     private final String notasEspeciales;
 
-    // Constructor privado: solo el Builder puede llamarlo
+    // Constructor privado
     private SolicitudPrestamo(Builder builder) {
         this.estudiante = builder.estudiante;
         this.libro = builder.libro;

@@ -22,7 +22,7 @@ public class RegistrarPrestamoUseCase {
     }
 }
 
-// Interfaz del repositorio (Capa de Dominio/Use Case)
+// Interfaz
 interface RepositorioPrestamos {
     void guardar(SolicitudPrestamo p);
 

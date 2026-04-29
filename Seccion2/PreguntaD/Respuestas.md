@@ -1,0 +1,5 @@
+### 4. Pregunta 2D — Builder · Solicitudes de préstamo - ¿por qué conviene que SolicitudPrestamo sea inmutable una vez construida? ¿Qué problemas evitamos?
+
+Es fundamental que la SolicitudPrestamo sea inmutable por varias razones de peso en un sistema académico. Primero, evitamos que un estado de préstamo sea alterado accidentalmente después de haber sido validado. Si el objeto pudiera cambiar sus valores en cualquier momento, correríamos el riesgo de que alguien modifique la fecha de devolución o el ID del estudiante sin pasar por las reglas de negocio necesarias, lo que corrompería la integridad de nuestra base de datos.
+
+Además, al ser inmutable, el objeto es mucho más fácil de seguir en el flujo del programa. Si envío el préstamo a un servicio de notificaciones o a la base de datos, tengo la certeza de que los datos que llegaron son los mismos que se construyeron inicialmente. Esto elimina errores comunes donde una función secundaria modifica el objeto por referencia, causando efectos secundarios difíciles de rastrear.
