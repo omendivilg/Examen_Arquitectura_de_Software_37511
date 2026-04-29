@@ -1,0 +1,40 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+interface INotificador {
+    + enviarNotificacion(mensaje: String, usuario: String): void
+}
+
+interface IGeneradorReportes {
+    + generarReporte(datos: Object): void
+}
+
+interface IAutenticador {
+    + validarCredenciales(user: String, pass: String): boolean
+}
+
+class ServicioPrestamos {
+    - notificador: INotificador
+    - catalogo: CatalogoBiblioteca
+    + prestarLibro(isbn: String, alumnoId: String): void
+    + devolverLibro(isbn: String): void
+}
+
+class ServicioMultas {
+    + registrarMulta(alumnoId: String, monto: double): void
+}
+
+class NotificadorEmail implements INotificador {
+    + enviarNotificacion(mensaje: String, usuario: String): void
+}
+
+class ReporteadorPDF implements IGeneradorReportes {
+    + generarReporte(datos: Object): void
+}
+
+class AutenticadorLDAP implements IAutenticador {
+    + validarCredenciales(user: String, pass: String): boolean
+}
+
+ServicioPrestamos --> INotificador
+@enduml

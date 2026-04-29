@@ -1,0 +1,29 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+interface Usuario {
+    + obtenerPermisos(): String[]
+    + obtenerVistaPrincipal(): String
+}
+
+class Estudiante implements Usuario {
+    + obtenerPermisos(): String[]
+    + obtenerVistaPrincipal(): String
+}
+
+class Bibliotecario implements Usuario {
+    + obtenerPermisos(): String[]
+    + obtenerVistaPrincipal(): String
+}
+
+class Admin implements Usuario {
+    + obtenerPermisos(): String[]
+    + obtenerVistaPrincipal(): String
+}
+
+class FabricaDeUsuarios {
+    + {static} crearUsuario(tipo: String): Usuario
+}
+
+FabricaDeUsuarios ..> Usuario : "instancia"
+@enduml

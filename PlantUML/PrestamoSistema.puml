@@ -1,0 +1,32 @@
+@startuml
+actor Estudiante as U
+participant "Web App" as WA
+participant "Controller / Use Case" as C
+participant "UserFactory (Factory)" as F
+participant "LoanBuilder (Builder)" as B
+participant "PaymentAdapter (Adapter)" as A
+database "AuditLogger (Singleton)" as S
+
+U -> WA : Solicitar Préstamo
+WA -> C : POST /prestamos (ISBN, ID)
+
+note over C, F: Patrón Factory
+C -> F : crearUsuario("Estudiante")
+F --> C : objeto Estudiante
+
+note over C, S: Patrón Singleton
+C -> S : registrar("Inicia solicitud")
+
+note over C, B: Patrón Builder
+C -> B : setEstudiante().setLibro().construir()
+B --> C : SolicitudPrestamo (Inmutable)
+
+note over C, A: Patrón Adapter
+C -> A : procesarPago(fianza)
+A --> C : Confirmación
+
+C -> C : Persistir en DB
+C -> S : registrar("Éxito")
+C --> WA : 201 Created
+WA --> U : "Préstamo Confirmado"
+@enduml

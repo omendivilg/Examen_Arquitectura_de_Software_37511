@@ -1,0 +1,16 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+class AuditoriaLogger {
+    - {static} instancia: AuditoriaLogger
+    - AuditoriaLogger()
+    + {static} obtenerInstancia(): AuditoriaLogger
+    + registrar(evento: String, usuario: String): void
+}
+
+note right of AuditoriaLogger::"AuditoriaLogger()"
+  Constructor privado para 
+  evitar instanciación externa.
+end note
+
+@enduml

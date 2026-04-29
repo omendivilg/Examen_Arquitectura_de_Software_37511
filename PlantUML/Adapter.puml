@@ -1,0 +1,24 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+interface CatalogoBiblioteca <<interface>> {
+    + buscarLibro(isbn: String): Libro
+}
+
+class CatalogoCETYS {
+    + consultarObra(codigoCETYS: String, formato: String): ResultadoSOAP
+}
+
+class AdaptadorCatalogoCETYS {
+    - apiExterna: CatalogoCETYS
+    + buscarLibro(isbn: String): Libro
+}
+
+CatalogoBiblioteca <|.. AdaptadorCatalogoCETYS
+AdaptadorCatalogoCETYS -> CatalogoCETYS : "usa"
+
+note bottom of AdaptadorCatalogoCETYS
+  Traduce buscarLibro() a
+  consultarObra()
+end note
+@enduml
